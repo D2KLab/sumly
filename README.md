@@ -1,2 +1,2 @@
 # sumly
-# Frequency based summary 
+# Frequency based summary for running via the CLI
