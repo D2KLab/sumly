@@ -31,4 +31,5 @@ In case you already created virtual environment in Pycharm start directly from h
 ### Get the code
 
 You need to clone the repository:
-$ git clone https://github.com/D2KLab/sumly.git
+
+> $ git clone https://github.com/D2KLab/sumly.git
