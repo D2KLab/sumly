@@ -12,12 +12,12 @@ Some packet you should install via pip on terminal.
 > pip install name
 
 If you face any issue while installing  "en_core_web_lg" use following commands in the terminal:
-
+'''
 >python -m venv .env
 >source .env/bin/activate
 >pip install -U spacy
 >python -m spacy download en_core_web_lg
-
+'''
 In case you already created virtual environment in Pycharm start directly from here:
 
 >pip install -U spacy
