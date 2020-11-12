@@ -28,3 +28,7 @@ In case you already created virtual environment in Pycharm start directly from h
 >python -m spacy download en_core_web_lg
 
 ## The steps to launch the application
+### Get the code
+
+You need to clone the repository:
+$ git clone https://github.com/D2KLab/sumly.git
