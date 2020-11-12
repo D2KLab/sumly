@@ -3,7 +3,7 @@
 
 
    ## Requirements
-You can find requiremnets versions inside requirments.txt file.
+You can find requirement versions inside requirements.txt file.
 
 ## Installing library
 
