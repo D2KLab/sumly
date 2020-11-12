@@ -40,3 +40,11 @@ Example:
 >$python fsummary.py file.txt file1.txt
 
 FYI your input file (file.txt) should be inside the same directory in order to execute successfully.
+
+#Colaboratory Notebook
+
+Since our local machine do not support GPU we used CPU version and for that reason you should run fsummary.py on PyCharm or similar editor. 
+However you can find  other tested models on repository in order to run directly on Colab. 
+
+#Conlcusion
+
