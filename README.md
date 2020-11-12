@@ -39,3 +39,4 @@ Run fsummary.py on CLI. You can use PyCharm terminal or on already created envir
 Example: 
 >$python fsummary.py file.txt file1.txt
 
+FYI your input file (file.txt) should be inside the same directory in order to execute successfully.
