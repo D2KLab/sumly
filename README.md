@@ -48,4 +48,4 @@ However you can find  other tested models on repository in order to run directly
 
 # Conlcusion
 
-Our purpose is to boost the accuracy of our output. We used clinical notes written by doctors as an input. You can find  mimic-iii-clinical-database-demo in reporsitory. We have used different models and metrics that already devoloped or we adjusted them. Now we are seeking for new way in order to get better result. Research going on.
+Our purpose is to boost the accuracy of our output. We used clinical notes written by doctors as an input. You can find  mimic-iii-clinical-database-demo in reporsitory. We have used different models and metrics that already devoloped or we modified them. Now we are seeking for new way in order to get better result. Research going on.
