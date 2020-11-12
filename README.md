@@ -36,5 +36,6 @@ You need to clone the repository:
 
 Run fsummary.py on CLI. You can use PyCharm terminal or on already created environment.
 
-Example: > $ python fsummary file.txt file1.txt
+Example: 
+>$python fsummary file.txt file1.txt
 
