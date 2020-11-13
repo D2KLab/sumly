@@ -4,6 +4,7 @@
 
    ## Requirements
 You can find requirement versions inside requirements.txt file.
+> $ pip install -r requirements.txt
 
 ## Installing library
 
