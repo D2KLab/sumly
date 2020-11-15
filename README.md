@@ -1,7 +1,8 @@
 # sumly
 # Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
 
-                  # Baseline Approaches
+<center># Baseline Approaches</center>
+                  
 ## Frequency based summarization for running via the CLI
 
 
