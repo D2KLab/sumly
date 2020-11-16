@@ -3,7 +3,7 @@
 
 
                   
-## Baseline approach Frequency based summarization for running via the CLI
+### Baseline approach Frequency based summarization for running via the CLI
 
 
    ## Requirements
