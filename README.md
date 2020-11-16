@@ -5,7 +5,7 @@
 
 
                   
-## Baseline approach Frequency based summarization for running via the CLI and for comparing with Transformed based approach
+### Baseline approach Frequency based summarization for running via the CLI and for comparing with Transformed based approach
 
 
    ## Requirements
