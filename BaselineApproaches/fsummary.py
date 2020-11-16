@@ -112,7 +112,7 @@ def summarize(text):
 
     return ' '.join(summary)
 
-#
+##
 def save(filename, summary):
     outF = open(filename, "w")
     for line in summary:
