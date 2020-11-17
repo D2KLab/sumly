@@ -49,8 +49,8 @@ FYI your input file (file.txt) should be inside the same directory in order to e
 
 # Colaboratory Notebook
 
-Since our local machine do not support GPU that's why we used CPU option and for that reason you should run **fsummary.py** on PyCharm or similar editor. 
-However you can find  other tested models on repository in order to run directly on Colab. 
+Since our local machine do not support GPU that's why we used CPU option and for that reason you should run fsummary.py on PyCharm or similar editor. 
+However you can find  other baseline approach models on repository in order to run directly on Colab. 
 
 # Conlcusion
 
