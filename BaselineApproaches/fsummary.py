@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import jsonlines
 import numpy
 import jsonlines as js
 import getopt
@@ -23,6 +24,11 @@ import pandas as pd
 import numpy as np
 import statistics as sc
 import spacy
+import tokenize
+
+
+from pathlib import Path
+
 
 
 from scipy.stats import entropy
@@ -112,15 +118,34 @@ def summarize(text):
 
     return ' '.join(summary)
 
-##
-def save(filename, summary):
-    outF = open(filename, "w")
-    for line in summary:
 
-        outF.write(line)
-        #outF.write("\n")
-        outF.write(" ")
-    outF.close()
+def save(filename, summary):
+    if filename.endswith(".txt"):
+        outF = open(filename, "w")
+        for line in summary:
+            outF.write(line)
+            #outF.write("\n")
+            outF.write(" ")
+        outF.close()
+    elif filename.endswith(".jsonl"):
+        out_file = open(filename, "w")
+        json.dump({"text": "".join(summary).strip()}, out_file, indent = 4, sort_keys = False)
+        out_file.close()
+
+
+# def save(filename, summary):
+#     outF = js.open(filename, "w")
+#     json.dump(summary, outF)
+#
+#     for line in summary:
+#         outF.write(line)
+#         #outF.write("\n")
+#         outF.write("")
+#     outF.close()
+
+# def converter():
+
+
 
 def main():
     Book=[]
@@ -143,7 +168,7 @@ def main():
 
     clinical_notes = [Book[i][0] for i in range(Book.size) if Book[i]]
 
-#Book.size
+#Book.size or insert line number
 
 
 
@@ -176,4 +201,3 @@ def main():
     # print(sc.mean(jsd_freq))
 
 main()
-
