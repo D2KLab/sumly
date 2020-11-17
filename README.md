@@ -9,17 +9,17 @@
 
 
    ## Requirements
-You can find requirement versions inside requirements.txt file.
+You can find requirement versions inside **requirements.txt** file.
 
 > $ pip install -r requirements.txt
 
 ## Installing library
 
-To be sure installed packages you can go and check it by clicking following steps. PyCharm-->Preferences-->Project interpreter. in case you need to install new packages you can add by clicking "+" there.
+To be sure installed packages you can go and check it by clicking following steps. PyCharm-->Preferences-->Project interpreter. in case you need to install new packages you can add by clicking **"+"** there.
 Some packet you should install via pip on terminal. 
 > pip install name
 
-If you face any issue while installing  "en_core_web_lg" use following commands in the terminal:
+If you face any issue while installing  **"en_core_web_lg"** use following commands in the terminal:
 
 >python -m venv .env
 
@@ -42,7 +42,7 @@ You need to clone the repository:
 
 > $ git clone https://github.com/D2KLab/sumly.git
 
-Run fsummary.py on CLI. You can use PyCharm terminal or on already created environment.
+Run **fsummary.py** on CLI. You can use PyCharm terminal or on already created environment.
 
 Example: 
 >$python fsummary.py file.txt file1.txt
@@ -56,7 +56,7 @@ FYI your input file (file.txt) should be inside the same directory in order to e
 
 # Colaboratory Notebook
 
-Since our local machine do not support GPU that's why we used CPU option and for that reason you should run fsummary.py on PyCharm or similar editor. 
+Since our local machine do not support GPU that's why we used CPU option and for that reason you should run **fsummary.py** on PyCharm or similar editor. 
 However you can find  other baseline approach models on repository in order to run directly on Colab. 
 
 # Conlcusion
