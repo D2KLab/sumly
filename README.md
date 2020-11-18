@@ -70,15 +70,21 @@ if you need help with Colab read my: https://medium.com/@rizvansaatov94/how-to-i
 BertViz is a tool for visualizing Attention in the Transformer model, supporting all models from the transformers library (BERT, GPT-2, XLNet, RoBERTa, XLM, CTRL, etc.).
 
 # Attention-head view
+The Attention-head view visualizes the attention patterns produced by one or more attention heads in a given transformer layer.
+
 ![alt text](https://github.com/D2KLab/sumly/blob/main/images/head_thumbnail_left.png) 
 ![alt text](https://github.com/D2KLab/sumly/blob/main/images/head_thumbnail_right.gif) 
 
 The Attention view supports all models from the Transformers library.
+
 # Model view
 
 The model view provides a birds-eye view of Attention across all of the model’s layers and heads.
+
 ![alt text](https://github.com/D2KLab/sumly/blob/main/images/model_thumbnail.jpg) 
 
+# Neuron view
+![alt text](https://github.com/D2KLab/sumly/blob/main/images/neuron_thumbnail.png)
 
 # Conlcusion
 
