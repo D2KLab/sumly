@@ -5,7 +5,7 @@
 
 
                   
-### ### Baseline approach Frequency based developed a CUI-based on extractive summarization of discharge summaries.
+### Baseline approach Frequency based developed a CUI-based on extractive summarization of discharge summaries.
 
    ## Requirements
 You can find requirement versions inside **requirements.txt** file.
