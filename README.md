@@ -96,6 +96,6 @@ The neuron view visualizes the individual neurons in the query and key vectors a
 
 We used clinical notes written by doctors as an input. You can find  mimic-iii-clinical-database-demo in reporsitory. This was general view of statistical-based and trasformed-based. Our purpose is to boost the accuracy of our output. 
 
-#References
+# References
 
 - https://github.com/jessevig/bertviz
