@@ -59,6 +59,11 @@ FYI your input file (file.txt) should be inside the same directory in order to e
 Since our local machine do not support GPU that's why we used CPU option and for that reason you should run **fsummary.py** on PyCharm or similar editor. 
 However you can find  other baseline approach models on repository in order to run directly on Colab. 
 
+
+# Transformed Based Bert Model
+
+You can find Transformed based solution in **Main.ipynb**. You can run directly on Colaboratory. Since Colab supports GPU we choose to work it.
+If you need help through connecting Colab read my: https://medium.com/@rizvansaatov94/how-to-import-data-to-google-colab-for-the-beginner-6a311f051279
 # Conlcusion
 
 Our purpose is to boost the accuracy of our output. We used clinical notes written by doctors as an input. You can find  mimic-iii-clinical-database-demo in reporsitory. We have used different models and metrics that already devoloped or we modified them. Now we are seeking for new way in order to get better result. Research going on.
