@@ -7,6 +7,7 @@
                   
 ### Baseline approach Frequency based developed a CUI-based on extractive summarization of discharge summaries.
 
+
    ## Requirements
 You can find requirement versions inside **requirements.txt** file.
 
@@ -93,7 +94,8 @@ The neuron view visualizes the individual neurons in the query and key vectors a
 
 # Conlcusion
 
-We used clinical notes written by doctors as an input. You can find  **mimic-iii-clinical-database-demo** in reporsitory. This was general view of statistical-based and trasformed-based. Our purpose is to boost the accuracy of our output. 
+
+We used clinical notes written by doctors as an input. You can find  **mimic-iii-clinical-database-demo** in reporsitory. This was general view of statistical-based and trasformed-based models. Our purpose is to boost the accuracy of our output. 
 
 # References
 

@@ -25,20 +25,13 @@ import numpy as np
 import statistics as sc
 import spacy
 import tokenize
-
-
 from pathlib import Path
-
-
 
 from scipy.stats import entropy
 from scipy.spatial import distance
 from collections import Counter
 from collections import OrderedDict
 from collections import Counter
-
-
-
 from string import punctuation
 
 import en_core_web_lg
@@ -201,4 +194,3 @@ def main():
     # print(sc.mean(jsd_freq))
 
 main()
-
