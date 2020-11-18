@@ -67,11 +67,19 @@ if you need help with Colab read my: https://medium.com/@rizvansaatov94/how-to-i
 
 # BertViz
 
-BertViz is a tool for visualizing attention in the Transformer model, supporting all models from the transformers library (BERT, GPT-2, XLNet, RoBERTa, XLM, CTRL, etc.).
+BertViz is a tool for visualizing Attention in the Transformer model, supporting all models from the transformers library (BERT, GPT-2, XLNet, RoBERTa, XLM, CTRL, etc.).
 
 # Attention-head view
 ![alt text](https://github.com/D2KLab/sumly/blob/main/images/head_thumbnail_left.png) 
 ![alt text](https://github.com/D2KLab/sumly/blob/main/images/head_thumbnail_right.gif) 
+
+The Attention view supports all models from the Transformers library.
+# Model view
+
+The model view provides a birds-eye view of Attention across all of the model’s layers and heads.
+![alt text](https://github.com/D2KLab/sumly/blob/main/images/model_thumbnail.jpg) 
+
+
 # Conlcusion
 
 Our purpose is to boost the accuracy of our output. We used clinical notes written by doctors as an input. You can find  mimic-iii-clinical-database-demo in reporsitory. We have used different models and metrics that already devoloped or we modified them. Now we are seeking for new way in order to get better result. Research going on.
