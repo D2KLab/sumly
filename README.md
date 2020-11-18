@@ -83,9 +83,19 @@ The model view provides a birds-eye view of Attention across all of the model’
 
 ![alt text](https://github.com/D2KLab/sumly/blob/main/images/model_thumbnail.jpg) 
 
+The model view supports all models from the Transformers library
+
 # Neuron view
+
+The neuron view visualizes the individual neurons in the query and key vectors and shows how they are used to compute Attention.
+
 ![alt text](https://github.com/D2KLab/sumly/blob/main/images/neuron_thumbnail.png)
+
 
 # Conlcusion
 
-Our purpose is to boost the accuracy of our output. We used clinical notes written by doctors as an input. You can find  mimic-iii-clinical-database-demo in reporsitory. We have used different models and metrics that already devoloped or we modified them. Now we are seeking for new way in order to get better result. Research going on.
+We used clinical notes written by doctors as an input. You can find  mimic-iii-clinical-database-demo in reporsitory. This was general view of statistical-based and trasformed-based. Our purpose is to boost the accuracy of our output. 
+
+#References
+
+- https://github.com/jessevig/bertviz
