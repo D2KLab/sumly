@@ -1,6 +1,7 @@
 #!/usr/bin/python
+import textstat
+from textstat.textstat import textstat
 
-#tocompare.
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize, sent_tokenize
@@ -154,11 +155,32 @@ def run_summarization(text):
     threshold = _find_average_score(sentence_scores)
 
     # 5 Important Algorithm: Generate the summary
-    summary = _generate_summary(sentences, sentence_scores, 0.8* threshold)
+    summary = _generate_summary(sentences, sentence_scores, 0.7* threshold)
 
     return summary
 
+
 if __name__ == '__main__':
     result = run_summarization(text_str)
+
     print(result)
 
+
+
+
+
+
+print(textstat.flesch_reading_ease(result))
+print(textstat.smog_index(result))
+print(textstat.flesch_kincaid_grade(result))
+print(textstat.coleman_liau_index(result))
+print(textstat.automated_readability_index(result))
+print(textstat.dale_chall_readability_score(result))
+print(textstat.difficult_words(result))
+print(textstat.linsear_write_formula(result))
+print(textstat.gunning_fog(result))
+print(textstat.text_standard(result))
+#print(textstat.fernandez_huerta(text_str))
+#print(textstat.szigriszt_pazos(test_data))
+#print(textstat.gutierrez_polini(test_data))
+#print(textstat.crawford(test_data))
