@@ -59,8 +59,8 @@ FYI your input file (file.txt) should be inside the same directory in order to e
 In **Notebooks** folder located all notebooks file. You can find Transformed based solution in **Main.ipynb**. You can run directly on Colaboratory. Since Colab supports GPU we run our model on Colab.
 if you need help with Colab read this short article: https://medium.com/@rizvansaatov94/how-to-import-data-to-google-colab-for-the-beginner-6a311f051279
 Furthermore, you can find  other baseline approach models on repository in order to run directly on Colab. 
-If you want you run your colab and jupyter file via CLI you can use **Colab-CLI** library
-see here: 
+If you want you run your colab and jupyter file via CLI you can use **Colab-cli** library
+see here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
 ## Transformed based approach developed a CUI-based on extractive summarization of discharge summaries.
 
