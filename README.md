@@ -67,6 +67,7 @@ See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
 # Transformed Based Bert Model
 
+You can apply the same idea of Baseline aproach here in order to launch your application based on transformer model by running **main.py**. Just be sure your computer supports GPU otherwise this option does NOT work. In addition input file should be in text (.txt) format.
 
 # BertViz
 
