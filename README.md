@@ -47,7 +47,7 @@ Run **fsummary.py** on CLI. You can use PyCharm terminal or on already created e
 Example: 
 >$python fsummary.py file.txt file1.txt
 
-in order to upload to doccano you can use **.jsonl** format instead of **.txt**
+In order to upload to doccano you can use **.jsonl** format instead of **.txt**
 
 Example: 
 >$python fsummary.py file.txt file1.jsonl
