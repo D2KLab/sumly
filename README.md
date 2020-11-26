@@ -56,7 +56,9 @@ FYI your input file (file.txt) should be inside the same directory in order to e
 
 # Colaboratory Notebook
 
-Since our local machine do not support GPU that's why we used CPU option and for that reason you should run **fsummary.py** on PyCharm or similar editor. 
+In **Notebooks** folder located all notebooks file. You can find Transformed based solution in **Main.ipynb**. You can run directly on Colaboratory. Since Colab supports GPU we run our model on Colab.
+if you need help with Colab read this short article: https://medium.com/@rizvansaatov94/how-to-import-data-to-google-colab-for-the-beginner-6a311f051279
+
 However you can find  other baseline approach models on repository in order to run directly on Colab. 
 
 ## Transformed based approach developed a CUI-based on extractive summarization of discharge summaries.
