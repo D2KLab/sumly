@@ -101,7 +101,7 @@ The neuron view visualizes the individual neurons in the query and key vectors a
 # Conlcusion
 
 
-We used clinical notes written by doctors as an input. You can find  **mimic-iii-clinical-database-demo** in reporsitory. This was general view of statistical-based and trasformed-based models. Our purpose is to boost the accuracy of our output. 
+We used clinical notes written by doctors as an input. You can find  **mimic-iii-clinical-database-demo** in reporsitory. These were general view of statistical-based and transformed-based models. Our purpose was to summarize of clinical notes in order to make it easier for readers, especially for doctors. .
 
 # References
 
