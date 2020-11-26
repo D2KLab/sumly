@@ -67,8 +67,6 @@ See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
 # Transformed Based Bert Model
 
-You can find Transformed based solution in **Main.ipynb**. You can run directly on Colaboratory. Since Colab supports GPU we run our model on Colab.
-if you need help with Colab read this short article: https://medium.com/@rizvansaatov94/how-to-import-data-to-google-colab-for-the-beginner-6a311f051279
 
 # BertViz
 
