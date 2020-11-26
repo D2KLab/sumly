@@ -14,6 +14,9 @@ import csv
 import os
 import re
 import pandas as pd
+import statistics as sc
+
+
 
 def read_csv(csvfile):
     print('read_csv(): type(csvfile))={}'.format(csvfile))
@@ -100,6 +103,17 @@ def find_attentions(summary):
         score_norm = [i / sum(final_score) for i in final_score]
     return final_score
 
+import statistics as sc
+
+def extract_bert_summary(summary):
+  attentions = find_attentions(summary)
+  lengths=[len(lst) for lst in summary]
+  score=[[a]*leng for a,leng in zip(attentions,lengths)]
+  score = sum(score,[])
+  words = [word  for sentence in summary for word in sentence]
+  extraction = [word for (word,attention) in zip(words,score) if float(attention) > sc.mean(attentions)]
+  return extraction
+
 def save(filename, summary):
     if filename.endswith(".txt"):
         outF = open(filename, "w")
@@ -112,6 +126,7 @@ def save(filename, summary):
         out_file = open(filename, "w")
         json.dump({"text": "".join(summary).strip()}, out_file, indent = 4, sort_keys = False)
         out_file.close()
+
 def main():
     Book=[]
     parser = argparse.ArgumentParser(description='Make barchart from csv.')
@@ -141,7 +156,7 @@ def main():
     #clinical_notes = [[' '.join( sum(Book[i],[0]))] for i in range(100)]
     ##clinical_notes = [Book[i][0 ]for i in range(len(foo_df))]
 
-    summary=[find_attentions(note) for note in clinical_notes]
+    summary=[extract_bert_summary(note) for note in clinical_notes]
 
 
     #clinical_notes = Book.append(summary)
