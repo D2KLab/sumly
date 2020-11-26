@@ -59,6 +59,8 @@ FYI your input file (file.txt) should be inside the same directory in order to e
 Since our local machine do not support GPU that's why we used CPU option and for that reason you should run **fsummary.py** on PyCharm or similar editor. 
 However you can find  other baseline approach models on repository in order to run directly on Colab. 
 
+## Transformed based approach developed a CUI-based on extractive summarization of discharge summaries.
+
 
 # Transformed Based Bert Model
 
@@ -101,7 +103,7 @@ The neuron view visualizes the individual neurons in the query and key vectors a
 # Conlcusion
 
 
-We used clinical notes written by doctors as an input. You can find  **mimic-iii-clinical-database-demo** in reporsitory. These were general view of statistical-based and transformed-based models. Our purpose was to summarize of clinical notes in order to make it easier for readers, especially for doctors. .
+We used clinical notes written by doctors as an input. You can find  **mimic-iii-clinical-database-demo** in reporsitory. These were general view of statistical-based and transformed-based models. Our purpose was to summarize of clinical notes in order to make it easier for readers, especially for doctors. 
 
 # References
 
