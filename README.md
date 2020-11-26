@@ -5,7 +5,7 @@
 
 
                   
-### Baseline approach developed a CUI-based on extractive summarization of discharge summaries.
+### Baseline approach developed a CUI-based on extractive summarization of discharge summaries
 
 
    ## Requirements
@@ -62,7 +62,7 @@ Furthermore, you can find  other baseline approach models on repository in order
 If you want to run your colab and jupyter file via CLI you can use **Colab-cli** library.
 See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
-## Transformed based approach developed a CUI-based on extractive summarization of discharge summaries.
+## Transformed based approach developed a CUI-based on extractive summarization of discharge summaries
 
 
 # Transformed Based Bert Model
