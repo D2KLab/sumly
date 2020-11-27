@@ -60,7 +60,7 @@ See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
 
 
-#### Transformed Based Bert Model
+#### Transformed Based Bert Model 
 
 You can apply the same idea of Baseline aproach here in order to launch your application based on transformer model by running **main.py**. Just be sure your computer supports GPU otherwise this option does **NOT** work. In addition input file should be in text (**.txt**) format.
 
@@ -103,7 +103,7 @@ The neuron view visualizes the individual neurons in the query and key vectors a
 ## Conlcusion
 
 
-We used clinical notes written by doctors as an input. You can find  **mimic-iii-clinical-database-demo** in reporsitory. These were general view of statistical-based and transformed-based models. Our purpose was to summarize of clinical notes in order to make it easier for readers, especially for doctors. 
+We used clinical notes written by doctors as an input. You can find  [ MIMIC-III Clinical Database Demo](https://physionet.org/content/mimiciii-demo/1.4/) in reporsitory. These were general view of statistical-based and transformed-based models. Our purpose was to summarize of clinical notes in order to make it easier for readers, especially for doctors. :+1: 
 
 #### References
 
