@@ -2,12 +2,6 @@
 
 
 # Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
-Statistical-based model | Transformer-based model
------------- | -------------
-Baselineapproach.ipynb | Main.ipynb
-fsummary.py |main.py
-frequency.py | 
-
                 
 
  #### Requirements 
@@ -69,6 +63,13 @@ See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 #### Transformed Based Bert Model
 
 You can apply the same idea of Baseline aproach here in order to launch your application based on transformer model by running **main.py**. Just be sure your computer supports GPU otherwise this option does **NOT** work. In addition input file should be in text (**.txt**) format.
+
+Statistical-based model | Transformer-based model
+------------ | -------------
+ | 
+ |
+ | 
+
 
 #### BertViz
 
