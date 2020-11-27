@@ -11,7 +11,7 @@ You can find requirement versions inside **requirements.txt** file.
 
 > $ pip install -r requirements.txt
 
-#### Installing library
+#### Installation
 
 To be sure installed packages you can go and check it by clicking following steps. **PyCharm-->Preferences-->Project interpreter**. in case you need to install new packages you can add by clicking **"+"** there.
 Some packet you should install via pip on terminal. 
@@ -34,7 +34,7 @@ In case you already created virtual environment in Pycharm start directly from h
 >python -m spacy download en_core_web_lg
 
 
-#### Get the code
+#### Usage
 
 You need to clone the repository:
 
