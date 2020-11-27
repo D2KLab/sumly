@@ -5,10 +5,8 @@
 
 
                   
-### Baseline approach developed a CUI-based on extractive summarization of discharge summaries
 
-
-   ## Requirements
+ ## Requirements
 You can find requirement versions inside **requirements.txt** file.
 
 > $ pip install -r requirements.txt
