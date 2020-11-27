@@ -3,11 +3,10 @@
 
 # Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
 
-
- /requires/:service/:user/:repo                 
+                
 
  #### Requirements 
-You can find requirement versions inside **requirements.txt** file.
+You can find requirement versions inside @requirements.txt@ file.
 
 > $ pip install -r requirements.txt
 
