@@ -33,7 +33,7 @@ In case you already created virtual environment in Pycharm start directly from h
 
 >python -m spacy download en_core_web_lg
 
-### The steps to launch the application
+
 #### Get the code
 
 You need to clone the repository:
@@ -60,14 +60,14 @@ Furthermore, you can find  other baseline approach models on repository in order
 If you want to run your colab and jupyter file via CLI you can use **Colab-cli** library.
 See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
-## Transformed based approach developed a CUI-based on extractive summarization of discharge summaries
+#### Transformed based approach developed a CUI-based on extractive summarization of discharge summaries
 
 
-## Transformed Based Bert Model
+#### Transformed Based Bert Model
 
 You can apply the same idea of Baseline aproach here in order to launch your application based on transformer model by running **main.py**. Just be sure your computer supports GPU otherwise this option does **NOT** work. In addition input file should be in text (**.txt**) format.
 
-### BertViz
+#### BertViz
 
 BertViz is a tool for visualizing Attention in the Transformer model, supporting all models from the transformers library (BERT, GPT-2, XLNet, RoBERTa, XLM, CTRL, etc.).
 
