@@ -2,7 +2,7 @@
 
 
 # Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
-First Header | Second Header
+Statistical-based model | transformer-based model
 ------------ | -------------
 Content from cell 1 | Content from cell 2
 Content in the first column | Content in the second column
