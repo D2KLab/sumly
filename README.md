@@ -6,7 +6,7 @@
 
                   
 
- #### Requirements
+ #### Requirements /requires/:service/:user/:repo
 You can find requirement versions inside **requirements.txt** file.
 
 > $ pip install -r requirements.txt
