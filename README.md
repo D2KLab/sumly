@@ -38,15 +38,15 @@ You need to clone the repository:
 
 > $ git clone https://github.com/D2KLab/sumly.git
 
-Run **fsummary.py** on CLI. You can use PyCharm terminal or on already created environment.
+Run **main.py** on CLI. You can use PyCharm terminal or on already created environment.
 
 Example: 
->$python fsummary.py file.txt file1.txt
+>$python main.py file.txt file1.txt
 
 In order to upload to doccano you can use **.jsonl** format instead of **.txt**
 
 Example: 
->$python fsummary.py file.txt file1.jsonl
+>$python main.py file.txt file1.jsonl
 
 FYI your input file (file.txt) should be inside the same directory in order to execute successfully.
 
