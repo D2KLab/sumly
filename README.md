@@ -39,16 +39,20 @@ You need to clone the repository:
 > $ git clone https://github.com/D2KLab/sumly.git
 
 Run **main.py** on CLI. You can use PyCharm terminal or on already created environment.
+By choosing you can pilot either the statistical-based model or the transformer-based model.
 
 Example: 
->$python main.py file.txt file1.txt
+>$python main.py file.txt file1.txt statistical
+
+>$python main.py file.txt file1.txt transformer
 
 In order to upload to doccano you can use **.jsonl** format instead of **.txt**
 
 Example: 
->$python main.py file.txt file1.jsonl
+>$python main.py file.txt file1.jsonl statistical/transformer
 
-FYI your input file (file.txt) should be inside the same directory in order to execute successfully.
+**FYI** your input file (file.txt) should be inside the same directory in order to execute successfully.
+Just be sure your computer supports GPU otherwise this option does **NOT** work. In addition input file should be in text (**.txt**) format. 
 
 #### Colaboratory Notebook
 
@@ -62,7 +66,7 @@ See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
 #### Transformed Based Bert Model 
 
-You can apply the same idea of Baseline aproach here in order to launch your application based on transformer model by running **main.py**. Just be sure your computer supports GPU otherwise this option does **NOT** work. In addition input file should be in text (**.txt**) format.
+You can apply the same idea of Baseline aproach here in order to launch your application based on transformer model by running **main.py**. 
 
 
 
