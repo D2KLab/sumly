@@ -42,9 +42,9 @@ Run **main.py** on CLI. You can use PyCharm terminal or on already created envir
 By choosing you can pilot either the statistical-based model or the transformer-based model.
 
 Example: 
->$python main.py file.txt file1.txt statistical
+>$python main.py file.txt file1.txt **statistical**
 
->$python main.py file.txt file1.txt transformer
+>$python main.py file.txt file1.txt **transformer**
 
 In order to upload to doccano you can use **.jsonl** format instead of **.txt**
 
