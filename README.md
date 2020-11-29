@@ -2,7 +2,14 @@
 
 
 # Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
-     <font color="green"> Some green text </font>           
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+              
 
  #### Requirements 
 You can find requirement versions inside **requirements.txt** file.
