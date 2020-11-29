@@ -1,13 +1,7 @@
 # sumly
 
 
-
-```diff
-
-! # Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
-
-
-```
+# Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
               
 
  #### Requirements 
