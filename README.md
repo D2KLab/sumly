@@ -49,7 +49,7 @@ Example:
 In order to upload to doccano you can use **.jsonl** format instead of **.txt**
 
 Example: 
->$python main.py file.txt file1.jsonl statistical/transformer
+>$python main.py file.txt file1.jsonl **statistical/transformer**
 
 **FYI** your input file (file.txt) should be inside the same directory in order to execute successfully.
 Just be sure your computer supports GPU otherwise this option does **NOT** work. In addition input file should be in text (**.txt**) format. 
