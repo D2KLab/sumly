@@ -64,13 +64,6 @@ See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
 
 
-#### Transformed Based Bert Model 
-
-You can apply the same idea of Baseline aproach here in order to launch your application based on transformer model by running **main.py**. 
-
-
-
-
 #### BertViz
 
 BertViz is a tool for visualizing Attention in the Transformer model, supporting all models from the transformers library (BERT, GPT-2, XLNet, RoBERTa, XLM, CTRL, etc.).
