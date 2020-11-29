@@ -3,11 +3,10 @@
 
 # Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
 ```diff
-- text in red
-+ text in green
+
 ! text in orange
-# text in gray
-@@ text in purple (and bold)@@
+
+
 ```
               
 
