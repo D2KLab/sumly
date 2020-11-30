@@ -46,7 +46,7 @@ Example:
 
 >$python main.py file.txt file1.txt **transformer**
 
-In order to upload to doccano you can use **.jsonl** format instead of **.txt**
+In order to upload to doccano you can choose **.jsonl** format instead of **.txt**
 
 Example: 
 >$python main.py file.txt file1.jsonl **statistical/transformer**
