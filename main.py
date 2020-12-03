@@ -6,6 +6,7 @@ import numpy as np
 import jsonlines as js
 from typing import Optional
 from typing import Sequence
+import string
 import getopt
 import argparse
 import pprint
@@ -36,7 +37,8 @@ nlp = en_core_web_lg.load()
 def read_csv(csvfile):
     print('read_csv(): type(csvfile))={}'.format(csvfile))
     foo_df = pd.read_csv(csvfile)
-    return foo_df
+
+    return foo_dfr
 
 
 cuda_flag = torch.cuda.is_available()
@@ -74,6 +76,21 @@ tokenizer = AutoTokenizer.from_pretrained("emilyalsentzer/Bio_ClinicalBERT")
 model = AutoModel.from_pretrained("emilyalsentzer/Bio_ClinicalBERT")
 
 
+def kld(summ, org):
+        dist_original=Counter(str(org).lower().split())
+        dist_summary=Counter(str(summ).lower().split())
+        q = list(dist_original.values())
+        p=list(dist_summary.values())
+        a=min(len(p),len(q))
+        return entropy(p[0:a],qk=q[0:a])
+
+def jsd(summ,org):
+        dist_original=Counter(str(org).lower().split())
+        dist_summary=Counter(str(summ).lower().split())
+        p = list(dist_original.values())
+        q = list(dist_summary.values())
+        a=min(len(p),len(q))
+        return distance.jensenshannon(p[0:a],q[0:a])
 def find_stats(note):
     padsize=0
     listsize=0
@@ -84,9 +101,9 @@ def find_stats(note):
         if len(lst)==padsize:
             pos_longestsentence=pos
             pos+=1
-    #print('Size of maximum string is ',padsize)
-    #print('Total number of lists ',listsize)
-   # print('Longest Sentence is at index ',pos_longestsentence)
+    print('Size of maximum string is ',padsize)
+    print('Total number of lists ',listsize)
+    print('Longest Sentence is at index ',pos_longestsentence)
     return (padsize,listsize,pos_longestsentence)
 
 
@@ -100,8 +117,9 @@ model.eval();
 def find_attentions(summary):
 
     input_text = []
+
     for lst in summary:
-        input_text.append(tokenizer.encode_plus(lst, add_special_tokens=True, return_tensors='pt'))  # ecnode
+        input_text.append(tokenizer.encode_plus(lst, add_special_tokens=True, is_split_into_words=False, return_tensors='pt'))  # ecnode
     # do padding to make all sentences equal for BERT
     tensor_text = pad_sequence([item['input_ids'].squeeze(0) for item in input_text], batch_first=True)
     tensor_mask = pad_sequence([item['attention_mask'].squeeze(0) for item in input_text], batch_first=True)
@@ -117,18 +135,24 @@ def find_attentions(summary):
         final_score = [np.max(attentions[sen][:].cpu().numpy()) for sen in range(attentions.shape[0])]
         final_score = [0 if i < 0 else i for i in final_score]
         score_norm = [i / sum(final_score) for i in final_score]
+
+
     return final_score
 
 
 
 def extract_bert_summary(summary):
+
   attentions = find_attentions(summary)
   lengths=[len(lst) for lst in summary]
   score=[[a]*leng for a,leng in zip(attentions,lengths)]
   score = sum(score,[])
   words = [word  for sentence in summary for word in sentence]
   extraction = [word for (word,attention) in zip(words,score) if float(attention) > sc.mean(attentions)]
-  #print(extraction)
+  #print(len(extraction))
+  #extraction= ' '.join(extraction)
+  #return extraction
+
   return ' '.join(extraction)
 
 def summarize(text):
@@ -184,7 +208,9 @@ def save(filename, summary):
         for line in summary:
             outF.write(str(line))
             #outF.write("\n")
-            outF.write(" ")
+
+            outF.write("")
+
         outF.close()
     elif filename.endswith(".jsonl"):
         out_file = open(filename, "w")
@@ -252,14 +278,19 @@ def main():
 
     print(summary )
 
-
+    kld_freq=[kld(clinical_notes[i],summary[i]) for i in range(Book.size)]
+    #print(kld_freq)
+    jsd_freq=[jsd(summ,org) for org,summ in zip(clinical_notes,summary)]
+    #print(jsd_freq)
+    print("KLD and JSD ")
+    print(sc.mean(kld_freq))
+    print(sc.mean(jsd_freq))
     save(filename=args.outputfile, summary=summary)
 
 
 
 
 main()
-
 
 
 
