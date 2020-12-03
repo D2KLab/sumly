@@ -2,7 +2,7 @@
 
 
 # Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
-                
+              
 
  #### Requirements 
 You can find requirement versions inside **requirements.txt** file.
@@ -38,17 +38,21 @@ You need to clone the repository:
 
 > $ git clone https://github.com/D2KLab/sumly.git
 
-Run **fsummary.py** on CLI. You can use PyCharm terminal or on already created environment.
+Run **main.py** on CLI. You can use PyCharm terminal or on already created environment.
+By choosing you can pilot either the statistical-based model or the transformer-based model.
 
 Example: 
->$python fsummary.py file.txt file1.txt
+>$python main.py file.txt file1.txt **statistical**
 
-In order to upload to doccano you can use **.jsonl** format instead of **.txt**
+>$python main.py file.txt file1.txt **transformer**
+
+In order to upload to doccano you can choose **.jsonl** format instead of **.txt**
 
 Example: 
->$python fsummary.py file.txt file1.jsonl
+>$python main.py file.txt file1.jsonl **statistical/transformer**
 
-FYI your input file (file.txt) should be inside the same directory in order to execute successfully.
+**FYI** your input file (file.txt) should be inside the same directory in order to execute successfully.
+Just be sure your computer supports GPU otherwise this option does **NOT** work. In addition input file should be in text (**.txt**) format. 
 
 #### Colaboratory Notebook
 
@@ -57,13 +61,6 @@ if you need help with Colab read this short article: [Medium](https://medium.com
 Furthermore, you can find  other baseline approach models on repository in order to run directly on Colab. 
 If you want to run your colab and jupyter file via CLI you can use **Colab-cli** library.
 See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
-
-
-
-#### Transformed Based Bert Model 
-
-You can apply the same idea of Baseline aproach here in order to launch your application based on transformer model by running **main.py**. Just be sure your computer supports GPU otherwise this option does **NOT** work. In addition input file should be in text (**.txt**) format.
-
 
 
 
@@ -100,10 +97,10 @@ The neuron view visualizes the individual neurons in the query and key vectors a
 
 
 
-## Conlcusion
+#### Conlcusion
 
 
-We used clinical notes written by doctors as an input. You can find  [ MIMIC-III Clinical Database Demo](https://physionet.org/content/mimiciii-demo/1.4/) in reporsitory. These were general view of statistical-based and transformed-based models. Our purpose was to summarize of clinical notes in order to make it easier for readers, especially for doctors. :+1: 
+We used clinical notes written by doctors as an input. For a detailed description of the database structure, see the [ MIMIC-III Clinical Database Page](https://physionet.org/content/mimiciii-demo/1.4/). These were general view of statistical-based and transformed-based models. Our purpose was to summarize of clinical notes in order to make it easier for readers, especially for doctors. :+1: 
 
 #### References
 
