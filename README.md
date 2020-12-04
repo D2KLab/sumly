@@ -1,7 +1,7 @@
 # sumly
 
 
-# Transformer-Model-Based-Extractive-Summarization-for-Clinical-Notes
+# Transformer-Based Model and Statistical-Based Model Extractive-Summarization-for-Clinical-Notes
               
 
  #### Requirements 
