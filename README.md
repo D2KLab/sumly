@@ -62,7 +62,8 @@ Furthermore, you can find  other baseline approach models on repository in order
 If you want to run your colab and jupyter file via CLI you can use **Colab-cli** library.
 See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
-
+### Result
+![alt text](https://github.com/D2KLab/sumly/blob/main/Images/download.png)
 
 #### BertViz
 
