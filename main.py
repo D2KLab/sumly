@@ -27,18 +27,24 @@ from collections import Counter
 from string import punctuation
 import textstat
 from textstat.textstat import textstat
+import tokenization
+import string
+import itertools
+import spacy
 import en_core_web_lg
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 nlp = en_core_web_lg.load()
+embeddings = spacy.load('en_core_web_lg')
 
-
-
-
+#from transformers import BertTokenizer
+#from transformers import BertModel, BertTokenizer
 
 def read_csv(csvfile):
     print('read_csv(): type(csvfile))={}'.format(csvfile))
     foo_df = pd.read_csv(csvfile)
 
-    return foo_dfr
+    return foo_df
 
 
 cuda_flag = torch.cuda.is_available()
@@ -46,26 +52,6 @@ if cuda_flag:
     device = torch.cuda.current_device()
     device_name = torch.cuda.get_device_name(device)
 print('current device = '+device_name)
-
-
-
-# book = []
-# with js.open("notes_labeled_dev.ndjson") as reader:
-#   num = 0
-#   for summary in reader:
-#     if num<100:
-#         book.append(summary[2])
-#         num = num + 1
-# clinical_notes = [" ".join( sum(book[i],[])) for i in range(100)]
-# Book=[]
-# with js.open('notes.ndjson','r') as reader:
-#     num = 0
-#     for summary in reader:
-#       if num<10:
-#         Book.append( summary)
-#         num = num + 1
-#clinical_notes = [Book[i][2] for i in range(10)]
-#print(clinical_notes)
 
 
 
@@ -113,13 +99,17 @@ if cuda_flag:
     model = model.cuda()
 model.eval();
 
-
 def find_attentions(summary):
 
     input_text = []
 
     for lst in summary:
-        input_text.append(tokenizer.encode_plus(lst, add_special_tokens=True, is_split_into_words=False, return_tensors='pt'))  # ecnode
+
+       # input_text.append(tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True))
+
+      input_text.append(tokenizer.encode_plus(lst, is_split_into_words=False, add_special_tokens=False,  return_tensors='pt'))
+
+          # ecnode
     # do padding to make all sentences equal for BERT
     tensor_text = pad_sequence([item['input_ids'].squeeze(0) for item in input_text], batch_first=True)
     tensor_mask = pad_sequence([item['attention_mask'].squeeze(0) for item in input_text], batch_first=True)
@@ -142,18 +132,16 @@ def find_attentions(summary):
 
 
 def extract_bert_summary(summary):
+    attentions = find_attentions(summary)
+    lengths=[len(lst) for lst in summary]
+    score=[[a]*leng for a,leng in zip(attentions,lengths)]
+    score = sum(score,[])
+    words = [word  for sentence in summary for word in sentence]
+    extraction = [word for (word, attention) in zip(words, score) if float(attention) > sc.mean(attentions)]
 
-  attentions = find_attentions(summary)
-  lengths=[len(lst) for lst in summary]
-  score=[[a]*leng for a,leng in zip(attentions,lengths)]
-  score = sum(score,[])
-  words = [word  for sentence in summary for word in sentence]
-  extraction = [word for (word,attention) in zip(words,score) if float(attention) > sc.mean(attentions)]
-  #print(len(extraction))
-  #extraction= ' '.join(extraction)
-  #return extraction
 
-  return ' '.join(extraction)
+    return (" ".join(extraction))
+
 
 def summarize(text):
     keyword = []
@@ -202,6 +190,9 @@ def summarize(text):
     return ' '.join(summary)
 
 
+
+
+
 def save(filename, summary):
     if filename.endswith(".txt"):
         outF = open(filename, "w")
@@ -214,9 +205,44 @@ def save(filename, summary):
         outF.close()
     elif filename.endswith(".jsonl"):
         out_file = open(filename, "w")
-        json.dump({"text": "".join(summary).strip()}, out_file, indent = 4, sort_keys = False)
+
+
+        json.dump({"text": "".join(summary).strip(), "labels": []}, out_file, indent = 4, sort_keys = False )
         out_file.close()
 
+def Jaccard_Similarity(doc1, doc2):
+
+    # List the unique words in a document
+    words_doc1 = set(str(doc1))
+    words_doc2 = set(str(doc2))
+    # Find the intersection of words list of doc1 & doc2
+    intersection = words_doc1.intersection(words_doc2)
+    # Find the union of words list of doc1 & doc2
+    union = words_doc1.union(words_doc2)
+    # using length of intersection set divided by length of union set
+    return float(len(intersection)) / len(union)
+
+def CosineSim(X,Y):
+    X_list = word_tokenize(str(X))
+    Y_list = word_tokenize(str(Y))
+    sw = stopwords.words('english')
+    l1 =[];l2 =[]
+    X_set = {w for w in X_list if not w in sw}
+    Y_set = {w for w in Y_list if not w in sw}
+
+    rvector = X_set.union(Y_set)
+    for w in rvector:
+      if w in X_set: l1.append(1)
+      else: l1.append(0)
+      if w in Y_set: l2.append(1)
+      else: l2.append(0)
+    c = 0
+
+    for i in range(len(rvector)):
+            c+= l1[i]*l2[i]
+    cosine = c / float((sum(l1)*sum(l2))**0.5)
+
+    return cosine
 
 def main():
     Book=[]
@@ -228,17 +254,6 @@ def main():
 
     args = parser.parse_args()
 
-
-
-      #print( format(args.csvfile))
-   # print('main(): type(args.csvfile)) = {}'.format(args.csvfile))
-    #print('')
-
-    #csv='ADMISSIONS.csv'
-    #foo_df = pd.read_csv(csv)
-
-
-
     foo_df = pd.read_csv(args.csvfile)
     Book=foo_df.values
     print(f'Book size: {Book.size}')
@@ -246,20 +261,8 @@ def main():
 
 
     clinical_notes = [Book[i][0] for i in range(Book.size) if Book[i]]
-    (pad_size, _, _) = find_stats(clinical_notes[0])
+    (pad_size, _, _) = find_stats(clinical_notes)
     print(pad_size)
-
-#Book.size or insert line number
-
-
-
-
-
-
-
-
-    #clinical_notes = [[' '.join( sum(Book[i],[0]))] for i in range(100)]
-    ##clinical_notes = [Book[i][0 ]for i in range(len(foo_df))]
 
     if(args.transformation == "statistical"):
       print("Statistical-based model ...")
@@ -271,21 +274,19 @@ def main():
       print("Error happened, please check input parameter")
 
 
+    print(summary)
 
-    #clinical_notes = Book.append(summary)
+    X =[clinical_notes]
+    Y =[summary]
+    print("Cosine:",CosineSim(X, Y))
+    print("Jaccard:", Jaccard_Similarity(X,Y))
+    print("KLD:", kld(X,Y))
+    print("JSD", jsd(X,Y))
 
-
-
-    print(summary )
-
-    kld_freq=[kld(clinical_notes[i],summary[i]) for i in range(Book.size)]
-    #print(kld_freq)
-    jsd_freq=[jsd(summ,org) for org,summ in zip(clinical_notes,summary)]
-    #print(jsd_freq)
-    print("KLD and JSD ")
-    print(sc.mean(kld_freq))
-    print(sc.mean(jsd_freq))
     save(filename=args.outputfile, summary=summary)
+
+
+
 
 
 
