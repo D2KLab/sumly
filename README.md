@@ -64,8 +64,7 @@ See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
 #### Result
 
-![alt text](https://github.com/D2KLab/sumly/blob/main/Images/Cos.png)
-![alt text](https://github.com/D2KLab/sumly/blob/master/Images/klandjs.png)
+![alt text](https://github.com/D2KLab/sumly/blob/main/Images/Cos.png) ![alt text](https://github.com/D2KLab/sumly/blob/master/Images/klandjs.png)
 
 Left: Cosine Similarity and Jaccard Similarity where higher value means higher similarity.<br />
 Right: KLD and JSD divergence where values closer to 0 mean less distance (higher similarity).
