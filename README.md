@@ -64,7 +64,9 @@ See repository here: [colab-cli](https://github.com/Akshay090/colab-cli)
 
 #### Result
 
-![alt text](https://github.com/D2KLab/sumly/blob/main/Images/download.png)
+![alt text](https://github.com/D2KLab/sumly/blob/main/Images/Cos.png)
+![alt text](https://github.com/D2KLab/sumly/blob/master/Images/klandjs.png)
+
 
 #### BertViz
 
