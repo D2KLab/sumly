@@ -26,26 +26,20 @@ import statistics as sc
 import spacy
 import tokenize
 from pathlib import Path
-
 from scipy.stats import entropy
 from scipy.spatial import distance
 from collections import Counter
 from collections import OrderedDict
 from collections import Counter
 from string import punctuation
-
 import en_core_web_lg
 nlp = en_core_web_lg.load()
 
 
-
-
 def read_csv(csvfile):
     print('read_csv(): type(csvfile)) = {}'.format(csvfile))
-
     #spacy.load('en_core_web_lg')
     foo_df = pd.read_csv(csvfile)
-
     return foo_df
 
 
@@ -77,7 +71,6 @@ def summarize(text):
             continue
         if(token.pos_ in pos_tag):
             keyword.append(token.text)
-
     freq_word = Counter(keyword)
     most_common = freq_word.most_common(1)
     max_freq = None
@@ -125,21 +118,6 @@ def save(filename, summary):
         json.dump({"text": "".join(summary).strip()}, out_file, indent = 4, sort_keys = False)
         out_file.close()
 
-
-# def save(filename, summary):
-#     outF = js.open(filename, "w")
-#     json.dump(summary, outF)
-#
-#     for line in summary:
-#         outF.write(line)
-#         #outF.write("\n")
-#         outF.write("")
-#     outF.close()
-
-# def converter():
-
-
-
 def main():
     Book=[]
     parser = argparse.ArgumentParser(description='Make barchart from csv.')
@@ -147,50 +125,17 @@ def main():
     parser.add_argument('csvfile', type=argparse.FileType('r'), help='Input csv file')
     parser.add_argument('outputfile', type=str, help='Output csv file')
     args = parser.parse_args()
-      #print( format(args.csvfile))
-   # print('main(): type(args.csvfile)) = {}'.format(args.csvfile))
-    #print('')
-
-    #csv='ADMISSIONS.csv'
-    #foo_df = pd.read_csv(csv)
     foo_df = pd.read_csv(args.csvfile)
     Book=foo_df.values
     print(f'Book size: {Book.size}')
     clinical_notes = []
-
-
     clinical_notes = [Book[i][0] for i in range(Book.size) if Book[i]]
-
-#Book.size or insert line number
-
-
-
     #clinical_notes = [[' '.join( sum(Book[i],[0]))] for i in range(100)]
-    ##clinical_notes = [Book[i][0 ]for i in range(len(foo_df))]
-
+    #clinical_notes = [Book[i][0 ]for i in range(len(foo_df))]
     summary=[summarize(note) for note in clinical_notes]
-
-
     #clinical_notes = Book.append(summary)
-
-
-
     print(summary )
-
     save(filename=args.outputfile, summary=summary)
 
-
-    #
-    # dist_original=Counter(clinical_notes[0].lower().split())
-    # dis_summary=Counter(summary[0].lower().split())
-    #
-    # print(list(dist_original.values()))
-    # print(list(dis_summary.values()))
-    # kld_freq=[kld(clinical_notes[i],summary[i]) for i in range(10)]
-    # print(kld_freq)
-    # jsd_freq=[jsd(summ,org) for org,summ in zip(clinical_notes,summary)]
-    # print(jsd_freq)
-    # print(sc.mean(kld_freq))
-    # print(sc.mean(jsd_freq))
 
 main()
