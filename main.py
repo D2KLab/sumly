@@ -36,14 +36,12 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 nlp = en_core_web_lg.load()
 embeddings = spacy.load('en_core_web_lg')
-
 #from transformers import BertTokenizer
 #from transformers import BertModel, BertTokenizer
 
 def read_csv(csvfile):
     print('read_csv(): type(csvfile))={}'.format(csvfile))
     foo_df = pd.read_csv(csvfile)
-
     return foo_df
 
 
@@ -52,8 +50,6 @@ if cuda_flag:
     device = torch.cuda.current_device()
     device_name = torch.cuda.get_device_name(device)
 print('current device = '+device_name)
-
-
 
 
 global model
@@ -93,7 +89,6 @@ def find_stats(note):
     return (padsize,listsize,pos_longestsentence)
 
 
-
 from torch.nn.utils.rnn import pad_sequence
 if cuda_flag:
     model = model.cuda()
@@ -106,10 +101,8 @@ def find_attentions(summary):
     for lst in summary:
 
        # input_text.append(tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True))
-
       input_text.append(tokenizer.encode_plus(lst, is_split_into_words=False, add_special_tokens=False,  return_tensors='pt'))
-
-          # ecnode
+        
     # do padding to make all sentences equal for BERT
     tensor_text = pad_sequence([item['input_ids'].squeeze(0) for item in input_text], batch_first=True)
     tensor_mask = pad_sequence([item['attention_mask'].squeeze(0) for item in input_text], batch_first=True)
@@ -125,8 +118,6 @@ def find_attentions(summary):
         final_score = [np.max(attentions[sen][:].cpu().numpy()) for sen in range(attentions.shape[0])]
         final_score = [0 if i < 0 else i for i in final_score]
         score_norm = [i / sum(final_score) for i in final_score]
-
-
     return final_score
 
 
@@ -138,8 +129,6 @@ def extract_bert_summary(summary):
     score = sum(score,[])
     words = [word  for sentence in summary for word in sentence]
     extraction = [word for (word, attention) in zip(words, score) if float(attention) > sc.mean(attentions)]
-
-
     return (" ".join(extraction))
 
 
@@ -155,7 +144,6 @@ def summarize(text):
             continue
         if(token.pos_ in pos_tag):
             keyword.append(token.text)
-
     freq_word = Counter(keyword)
     most_common = freq_word.most_common(1)
     max_freq = None
@@ -190,18 +178,13 @@ def summarize(text):
     return ' '.join(summary)
 
 
-
-
-
 def save(filename, summary):
     if filename.endswith(".txt"):
         outF = open(filename, "w")
         for line in summary:
             outF.write(str(line))
             #outF.write("\n")
-
             outF.write("")
-
         outF.close()
     elif filename.endswith(".jsonl"):
         out_file = open(filename, "w")
@@ -241,7 +224,6 @@ def CosineSim(X,Y):
     for i in range(len(rvector)):
             c+= l1[i]*l2[i]
     cosine = c / float((sum(l1)*sum(l2))**0.5)
-
     return cosine
 
 def main():
@@ -251,14 +233,11 @@ def main():
     parser.add_argument('csvfile', type=argparse.FileType('r'), help='Input csv file')
     parser.add_argument('outputfile', type=str, help='Output csv file')
     parser.add_argument('transformation', type=str, help='transform type')
-
     args = parser.parse_args()
-
     foo_df = pd.read_csv(args.csvfile)
     Book=foo_df.values
     print(f'Book size: {Book.size}')
     clinical_notes = []
-
 
     clinical_notes = [Book[i][0] for i in range(Book.size) if Book[i]]
     (pad_size, _, _) = find_stats(clinical_notes)
@@ -273,7 +252,6 @@ def main():
     else:
       print("Error happened, please check input parameter")
 
-
     print(summary)
 
     X =[clinical_notes]
@@ -282,14 +260,7 @@ def main():
     print("Jaccard:", Jaccard_Similarity(X,Y))
     print("KLD:", kld(X,Y))
     print("JSD", jsd(X,Y))
-
     save(filename=args.outputfile, summary=summary)
-
-
-
-
-
-
 
 main()
 
