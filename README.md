@@ -51,7 +51,7 @@ Example:
 >$python main.py file.txt file1.jsonl **statistical/transformer**
 
 **FYI** your input file (file.txt) should be inside the same directory to execute successfully.
-Just be sure your computer supports GPU; otherwise, this option does **NOT** work. In addition, the input file should be in text (**.txt**) format. 
+Just be sure your computer supports **GPU**; otherwise, this option does **NOT** work. In addition, the input file should be in text (**.txt**) format. 
 
 #### Colaboratory Notebook
 
