@@ -113,8 +113,12 @@ def cosine(org, summ):
   c = 0
   for i in range(len(rvector)):
     c += l1[i]*l2[i]
-  cosine = c / float((sum(l1)*sum(l2))**0.5)
-  return cosine
+  
+  if sum(l1) == 0 or sum(l2) == 0:
+    return 0
+  else:
+    cosine = c / float((sum(l1)*sum(l2))**0.5)
+    return cosine
 
 def kld(org, summ): 
   dist_original = Counter(org.lower().split())
@@ -382,8 +386,8 @@ def main():
             print()
             print(f'KLD Frequency: {round(kld(text, summary), 3)}')
             print(f'JSD Frequency: {round(jsd(text, summary), 3)}')
-            # print(f'Jaccard Similarity: {round(jaccard(text, summary), 3)}')
-            # print(f'Cosine Similarity: {round(cosine(text, summary), 3)}')
+            print(f'Jaccard Similarity: {round(jaccard(text, summary), 3)}')
+            print(f'Cosine Similarity: {round(cosine(text, summary), 3)}')
                
             # Save the summary as a text file
             with open(output_path + f"/summary_{input_path.split('/')[-1].split('.')[0]}.txt", 'w') as text_file:
@@ -393,35 +397,36 @@ def main():
         elif input_type == 'multiple':
             kld_freq = []
             jsd_freq = []
-            # jaccard_sim = []
-            # cosine_sim = []
+            jaccard_sim = []
+            cosine_sim = []
             for org, summ in zip(texts, summaries):
                 kld_freq.append(kld(org, summ))
                 jsd_freq.append(jsd(org, summ))
-                # jaccard_sim.append(jaccard(org, summ))
-                # cosine_sim.append(cosine(org, summ))
+                jaccard_sim.append(jaccard(org, summ))
+                cosine_sim.append(cosine(org, summ))
 
             print()
             print(f'Average KLD Frequency: {round(sc.mean(kld_freq), 3)}')
             print(f'Average JSD Frequency: {round(sc.mean(jsd_freq), 3)}')
-            # print(f'Average Jaccard Similarity: {round(sc.mean(jaccard_sim), 3)}')
-            # print(f'Average Cosine Similarity: {round(sc.mean(cosine_sim), 3)}')
+            print(f'Average Jaccard Similarity: {round(sc.mean(jaccard_sim), 3)}')
+            print(f'Average Cosine Similarity: {round(sc.mean(cosine_sim), 3)}')
             
             plt.style.use('ggplot')
             plt.figure(figsize=(10, 8))
-            plt.plot(kld_freq, 'b', label='KL Divergance')
-            plt.plot(jsd_freq, 'r', label='JS Divergance')
-            # plt.plot(jaccard_sim, 'y', label='Jaccard Similarity')
-            # plt.plot(cosine_sim, 'g', label='Cosine Similarity')
-            plt.xlabel('Dataset')
-            plt.ylabel('Closeness to Original Document')
+            plt.bar(1, sc.mean(kld_freq), color='b', label='KL Divergance')
+            plt.bar(2, sc.mean(jsd_freq), color='r', label='JS Divergance')
+            plt.bar(3, sc.mean(jaccard_sim), color='y', label='Jaccard Similarity')
+            plt.bar(4, sc.mean(cosine_sim), color='g', label='Cosine Similarity')
+            plt.xlabel('Metrics')
+            plt.xticks([1, 2, 3, 4], ('KL Divergance', 'JS Divergance', 'Jaccard Similarity', 'Cosine Similarity'))
+            plt.ylabel('Scores')
             plt.legend(loc='upper right')
             if summ_type == 'statistical':
                 plt.title('Statistical Based')
-                plt.savefig('chart.png')
+                plt.savefig('result.png')
             elif summ_type == 'transformer':
                 plt.title('Transformer Based')
-                plt.savefig('chart.png')
+                plt.savefig('result.png')
 
             # Save each summary as a text file
             for i, summary in enumerate(summaries):
