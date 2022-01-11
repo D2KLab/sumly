@@ -78,7 +78,7 @@ def get_text(id):
 
 
 ### Metrics ###       
-def jaccard(org, summ):
+def get_jaccard(org, summ):
 
   # List the unique words in a document
   words_doc1 = set(str(org))
@@ -93,7 +93,7 @@ def jaccard(org, summ):
   # Using length of intersection set divided by length of union set
   return float(len(intersection)) / len(union)
 
-def cosine(org, summ):
+def get_cosine(org, summ):
   X_list = word_tokenize(str(org))
   Y_list = word_tokenize(str(summ))
   sw = stopwords.words('english')
@@ -120,7 +120,7 @@ def cosine(org, summ):
     cosine = c / float((sum(l1)*sum(l2))**0.5)
     return cosine
 
-def kld(org, summ): 
+def get_kld(org, summ): 
   dist_original = Counter(org.lower().split())
   dist_summary = Counter(summ.lower().split())
   p = list(dist_original.values())
@@ -128,7 +128,7 @@ def kld(org, summ):
   a = min(len(p), len(q))
   return entropy(p[0:a], q[0:a])
  
-def jsd(org, summ):
+def get_jsd(org, summ):
   dist_original = Counter(org.lower().split())
   dist_summary = Counter(summ.lower().split())
   p = list(dist_original.values())
@@ -218,6 +218,29 @@ def transformer(text):
   return summary
 
 
+### Graphing ###
+def create_chart(jaccard, cosine, kld, jsd, method):
+    plt.style.use('ggplot')
+    plt.figure(figsize=(10, 8))
+    
+    plt.bar(1, jaccard, color='b', label='Jaccard Similarity')
+    plt.bar(2, cosine, color='r', label='Cosine Similarity')            
+    plt.bar(3, kld, color='y', label='KL Divergance')
+    plt.bar(4, jsd, color='g', label='JS Divergance')
+    
+    plt.xlabel('Metrics')
+    plt.xticks([1, 2, 3, 4], ('Jaccard Similarity', 'Cosine Similarity', 'KL Divergance', 'JS Divergance'))
+    plt.ylabel('Scores')
+    plt.legend(loc='upper right')
+    
+    if method == 'statistical':
+        plt.title('Statistical Based')
+        plt.savefig('result.png')
+    elif method == 'transformer':
+        plt.title('Transformer Based')
+        plt.savefig('result.png')  
+
+
 ### Main Function ###
 def main():
     parser = argparse.ArgumentParser()
@@ -235,7 +258,7 @@ def main():
     
     summarize.add_argument('--input_path', type=str, required=True, help='Input directory')
     summarize.add_argument('--output_path', type=str, required=True, help='Output directory')
-    summarize.add_argument('--summ_type', type=str, required=True, help='Summarization type')
+    summarize.add_argument('--method', type=str, required=True, help='Summarization method')
     
     args = parser.parse_args()
     
@@ -289,7 +312,7 @@ def main():
         # Initialize the parameters
         input_path = args.input_path
         output_path = args.output_path
-        summ_type = args.summ_type
+        method = args.method
         
         # Check if input path is a filename
         if os.path.isfile(input_path):
@@ -326,7 +349,7 @@ def main():
             raise ValueError('Input path must be a filename or file directory and output path must be a file directory.')     
         
         # Summarize using the statistical method
-        if summ_type == 'statistical':
+        if method == 'statistical':
             print('\nStatistical Based Summarization')
             
             if input_type == 'single':
@@ -346,7 +369,7 @@ def main():
                         print(f'Error with input: {files[i]}')         
         
         # Summarize using the transformer method
-        elif summ_type == 'transformer':
+        elif method == 'transformer':
             print('\nTransformer Based Summarization')
             
             # Check whether there is a GPU
@@ -383,11 +406,19 @@ def main():
         
         # Calculate the individual metric scores
         if input_type == 'single':
+            jaccard_score = get_jaccard(text, summary)
+            cosine_score = get_cosine(text, summary)
+            kld_score = get_kld(text, summary)
+            jsd_score = get_jsd(text, summary)  
+        
             print()
-            print(f'KLD Frequency: {round(kld(text, summary), 3)}')
-            print(f'JSD Frequency: {round(jsd(text, summary), 3)}')
-            print(f'Jaccard Similarity: {round(jaccard(text, summary), 3)}')
-            print(f'Cosine Similarity: {round(cosine(text, summary), 3)}')
+            print(f'Jaccard Similarity: {round(jaccard_score, 3)}')
+            print(f'Cosine Similarity: {round(cosine_score, 3)}')
+            print(f'KLD Frequency: {round(kld_score, 3)}')
+            print(f'JSD Frequency: {round(jsd_score, 3)}')
+
+            # Save the results as a chart
+            create_chart(jaccard_score, cosine_score, kld_score, jsd_score, method)
                
             # Save the summary as a text file
             with open(output_path + f"/summary_{input_path.split('/')[-1].split('.')[0]}.txt", 'w') as text_file:
@@ -395,42 +426,31 @@ def main():
         
         # Calculate the average metric scores
         elif input_type == 'multiple':
-            kld_freq = []
-            jsd_freq = []
-            jaccard_sim = []
-            cosine_sim = []
+            jaccard_list, cosine_list, kld_list, jsd_list = [], [], [], []
             for org, summ in zip(texts, summaries):
-                kld_freq.append(kld(org, summ))
-                jsd_freq.append(jsd(org, summ))
-                jaccard_sim.append(jaccard(org, summ))
-                cosine_sim.append(cosine(org, summ))
-
-            print()
-            print(f'Average KLD Frequency: {round(sc.mean(kld_freq), 3)}')
-            print(f'Average JSD Frequency: {round(sc.mean(jsd_freq), 3)}')
-            print(f'Average Jaccard Similarity: {round(sc.mean(jaccard_sim), 3)}')
-            print(f'Average Cosine Similarity: {round(sc.mean(cosine_sim), 3)}')
+                jaccard_list.append(get_jaccard(org, summ))
+                cosine_list.append(get_cosine(org, summ))            
+                kld_list.append(get_kld(org, summ))
+                jsd_list.append(get_jsd(org, summ))
             
-            plt.style.use('ggplot')
-            plt.figure(figsize=(10, 8))
-            plt.bar(1, sc.mean(kld_freq), color='b', label='KL Divergance')
-            plt.bar(2, sc.mean(jsd_freq), color='r', label='JS Divergance')
-            plt.bar(3, sc.mean(jaccard_sim), color='y', label='Jaccard Similarity')
-            plt.bar(4, sc.mean(cosine_sim), color='g', label='Cosine Similarity')
-            plt.xlabel('Metrics')
-            plt.xticks([1, 2, 3, 4], ('KL Divergance', 'JS Divergance', 'Jaccard Similarity', 'Cosine Similarity'))
-            plt.ylabel('Scores')
-            plt.legend(loc='upper right')
-            if summ_type == 'statistical':
-                plt.title('Statistical Based')
-                plt.savefig('result.png')
-            elif summ_type == 'transformer':
-                plt.title('Transformer Based')
-                plt.savefig('result.png')
+            jaccard_score = sc.mean(jaccard_list)
+            cosine_score = sc.mean(cosine_list)
+            kld_score = sc.mean(kld_list)
+            jsd_score = sc.mean(jsd_list)
+            
+            print()
+            print(f'Average Jaccard Similarity: {round(jaccard_score, 3)}')
+            print(f'Average Cosine Similarity: {round(cosine_score, 3)}')            
+            print(f'Average KLD Frequency: {round(kld_score, 3)}')
+            print(f'Average JSD Frequency: {round(jsd_score, 3)}')
+            
+            # Save the results as a chart
+            create_chart(jaccard_score, cosine_score, kld_score, jsd_score, method)
 
             # Save each summary as a text file
             for i, summary in enumerate(summaries):
               with open(output_path + f"/summary_{files[i].split('.')[0]}.txt", 'w') as text_file:
-                  text_file.write(summary)    
+                  text_file.write(summary)
+      
 
 main()
