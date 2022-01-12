@@ -172,7 +172,7 @@ def statistical(text):
     counter += 1
     if counter >= limit:
       break
-          
+  print(summary)        
   return ' '.join(summary)
 
 
@@ -197,7 +197,7 @@ def find_attentions(sentences):
 
 def transformer(text):
   doc = nlp(text)
-  sentences = [sent.string.strip() for sent in doc.sents]  
+  sentences = [sent.text for sent in doc.sents] 
 
   attentions = find_attentions(sentences)
   lengths = [len(sent) for sent in sentences]
@@ -205,9 +205,15 @@ def transformer(text):
   scores = [[a] * leng for a, leng in zip(attentions, lengths)]
   scores = sum(scores, [])
   
-  words = [word_tokenize(sent) for sent in sentences]
-  extraction = [word for (word, attention) in zip(words, scores) if float(attention) > sc.mean(attentions)]
+  words = []
+  for sent in sentences:
+    if sent.endswith('\n\n'):
+      words.append(word_tokenize(sent))
+      words.append('\n\n')
+    else:
+      words.append(word_tokenize(sent))
   
+  extraction = [word for (word, attention) in zip(words, scores) if float(attention) > sc.mean(attentions)]
   summary = ''
   for i, sent in enumerate(extraction):
     if i == 0:
