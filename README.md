@@ -81,7 +81,7 @@ If you wish to import data into Colaboratory, you may follow this [short guide](
 
 ### Results
 
-![alt text](https://github.com/D2KLab/sumly/blob/main/Images/cos.png) ![alt text](https://github.com/D2KLab/sumly/blob/master/Images/kld_and_jsd.png)
+![alt text](https://github.com/D2KLab/sumly/blob/main/Images/cos_and_jacc.png) ![alt text](https://github.com/D2KLab/sumly/blob/main/Images/kld_and_jsd.png)
 
 Left: Cosine Similarity and Jaccard Similarity where a higher value signifies a higher similarity. <br/>
 Right: KLD and JSD divergence where a value closer to 0 signifies a higher similarity.
