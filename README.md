@@ -81,18 +81,18 @@ If you wish to import data into Colaboratory, you may follow this [short guide](
 
 ### Results
 
-![alt text](https://github.com/D2KLab/sumly/blob/main/Images/Cos.png) ![alt text](https://github.com/D2KLab/sumly/blob/master/Images/klandjs.png)
+![alt text](https://github.com/D2KLab/sumly/blob/main/Images/cos.png) ![alt text](https://github.com/D2KLab/sumly/blob/master/Images/kld_and_jsd.png)
 
-Left: Cosine Similarity and Jaccard Similarity where higher value means higher similarity.<br />
-Right: KLD and JSD divergence where values closer to 0 mean less distance (higher similarity).
+Left: Cosine Similarity and Jaccard Similarity where a higher value signifies a higher similarity. <br/>
+Right: KLD and JSD divergence where a value closer to 0 signifies a higher similarity.
 
 
 ### BertViz
 
-BertViz is a tool for visualizing Attention in the Transformer model, supporting all models from the transformers library (BERT, GPT-2, XLNet, RoBERTa, XLM, CTRL, etc.).
-
+BertViz is a tool for visualizing Attention in a Transformer model and supports all models from the transformers library (BERT, GPT-2, XLNet, RoBERTa, XLM, CTRL, etc.).
 
 #### Attention-head View
+
 The Attention-head view visualizes the attention patterns produced by one or more attention heads in a given transformer layer.
 
 ![alt text](https://github.com/D2KLab/sumly/blob/master/Images/head_thumbnail_left.png) 
@@ -100,8 +100,7 @@ The Attention-head view visualizes the attention patterns produced by one or mor
 
 The Attention view supports all models from the Transformers library.
 
-
-### Model View
+#### Model View
 
 The model view provides a birds-eye view of Attention across all of the model’s layers and heads.
 
@@ -109,10 +108,9 @@ The model view provides a birds-eye view of Attention across all of the model’
 
 The model view supports all models from the Transformers library.
 
+#### Neuron View
 
-### Neuron View
-
-The neuron view visualizes the individual neurons in the query and key vectors and shows how they are used to compute Attention.
+The neuron view visualizes the individual neurons in the query and key vectors and shows how they are used to compute the Attention.
 
 ![alt text](https://github.com/D2KLab/sumly/blob/master/Images/neuron_thumbnail.png)
 
