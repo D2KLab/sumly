@@ -310,6 +310,7 @@ def main():
         # Save each PubMed article as a text file
         for i, article in enumerate(articles):
           with open(output_path + f'/article_{success[i]}.txt', 'w') as text_file:
+              text_file.write(titles[success[i]] + '\n\n')
               text_file.write(article)
     
     # Summarize the text extractively
