@@ -172,7 +172,7 @@ def statistical(text):
     counter += 1
     if counter >= limit:
       break
-  print(summary)        
+        
   return ' '.join(summary)
 
 
@@ -205,22 +205,10 @@ def transformer(text):
   scores = [[a] * leng for a, leng in zip(attentions, lengths)]
   scores = sum(scores, [])
   
-  words = []
-  for sent in sentences:
-    if sent.endswith('\n\n'):
-      words.append(word_tokenize(sent))
-      words.append('\n\n')
-    else:
-      words.append(word_tokenize(sent))
-  
+  words = [word for sent in sentences for word in sent]
   extraction = [word for (word, attention) in zip(words, scores) if float(attention) > sc.mean(attentions)]
-  summary = ''
-  for i, sent in enumerate(extraction):
-    if i == 0:
-      summary += ' '.join(sent)[:-2] + sent[-1]
-    else:
-      summary += ' ' + ' '.join(sent)[:-2] + sent[-1]
-
+  
+  summary = ''.join(extraction)
   return summary
 
 
