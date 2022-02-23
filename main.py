@@ -19,8 +19,8 @@ from scipy.spatial import distance
 import statistics as sc
 
 from string import punctuation
-import en_core_web_md
-nlp = en_core_web_md.load()
+import en_core_web_sm
+nlp = en_core_web_sm.load()
 
 import torch
 from transformers import AutoTokenizer, AutoModel
@@ -228,11 +228,11 @@ def create_chart(jaccard, cosine, kld, jsd, method):
     plt.legend(loc='upper right')
     
     if method == 'statistical':
-        plt.title('Statistical Based')
-        plt.savefig('result.png')
+        plt.title('Statistical-based Summarization')
+        plt.savefig('results.png')
     elif method == 'transformer':
-        plt.title('Transformer Based')
-        plt.savefig('result.png')  
+        plt.title('Transformer-based Summarization')
+        plt.savefig('results.png')
 
 
 ### Main Function ###
@@ -445,7 +445,7 @@ def main():
             # Save each summary as a text file
             for i, summary in enumerate(summaries):
               with open(output_path + f"/summary_{files[i].split('.')[0]}.txt", 'w') as text_file:
-                  text_file.write(summary)
+                  text_file.write(summary)                 
       
 
 main()
