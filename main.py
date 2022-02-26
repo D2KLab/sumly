@@ -137,7 +137,7 @@ def get_jsd(org, summ):
   return distance.jensenshannon(p[0:a], q[0:a])
 
 
-### Statistical Summarization ### 
+### Statistical-based Summarization ### 
 def statistical(text):
   keyword = []
   pos_tag = ['PROPN', 'ADJ', 'NOUN', 'VERB']
@@ -176,11 +176,11 @@ def statistical(text):
   return ' '.join(summary)
 
 
-### Transformer Summarization ###  
+### Transformer-based Summarization ###  
 def find_attentions(sentences):
   input_text = []
   for sent in sentences:
-    input_text.append(tokenizer.encode_plus(sent, add_special_tokens=True, return_tensors='pt', truncation=True, max_length=512))
+    input_text.append(tokenizer.encode_plus(sent, add_special_tokens=True, return_tensors='pt'))
 
   tensor_text = pad_sequence([item['input_ids'].squeeze(0) for item in input_text], batch_first=True)
   tensor_mask  = pad_sequence([item['attention_mask'].squeeze(0) for item in input_text], batch_first=True)
@@ -190,23 +190,17 @@ def find_attentions(sentences):
     
   with torch.no_grad():
     attentions = model(tensor_text, token_type_ids = token_type, attention_mask = attention_mask)[-1]
-    final_score = [np.max(attentions[sen][:].cpu().numpy()) for sen in range(attentions.shape[0])]
-    final_score = [0 if i<0 else i for i in final_score]
+    scores = [np.max(attentions[sen][:].cpu().numpy()) for sen in range(attentions.shape[0])]
+    scores = [0 if i<0 else i for i in scores]
   
-  return final_score
+  return scores
 
 def transformer(text):
   doc = nlp(text)
   sentences = [sent.text for sent in doc.sents] 
 
   attentions = find_attentions(sentences)
-  lengths = [len(sent) for sent in sentences]
-
-  scores = [[a] * leng for a, leng in zip(attentions, lengths)]
-  scores = sum(scores, [])
-  
-  words = [word for sent in sentences for word in sent]
-  extraction = [word for (word, attention) in zip(words, scores) if float(attention) > sc.mean(attentions)]
+  extraction = [sent for (sent, attention) in zip(sentences, attentions) if float(attention) > sc.mean(attentions)]
   
   summary = ''.join(extraction)
   return summary
