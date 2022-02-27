@@ -1,4 +1,4 @@
-# sumly
+# Sumly
 
 
 # Statistical-Based and Transformer-Based Extractive Summarization of Clinical Notes
@@ -18,7 +18,7 @@ Some packages should be installed via pip using the terminal.
 
 > $ pip install name
 
-If there are issues while installing  **"en_core_web_md"**, use the following commands in the terminal:
+If there are issues while installing  **"en_core_web_sm"**, use the following commands in the terminal:
 
 > $ python -m venv .env
 
@@ -26,13 +26,13 @@ If there are issues while installing  **"en_core_web_md"**, use the following co
 
 > $ pip install -U spacy
 
-> $ python -m spacy download en_core_web_md
+> $ python -m spacy download en_core_web_sm
 
 In case a virtual environment has already been created in Pycharm, use the following commands instead:
 
 > $ pip install -U spacy
 
-> $ python -m spacy download en_core_web_md
+> $ python -m spacy download en_core_web_sm
 
 
 ### Usage
@@ -69,7 +69,7 @@ The summarization method may also be chosen to be **statistical-based** or **tra
 
 > $ python main.py summarize --input_path **article_20169073.txt** --output_path summaries --method **transformer**
 
-To use the transforer-based method, the computer must have a **GPU**. Additionally, the input files should be in a text (**.txt**) format. 
+Additionally, the input files should be in a text (**.txt**) format.
 
 
 ### Colaboratory Notebook
