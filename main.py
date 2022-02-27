@@ -186,7 +186,7 @@ def find_attentions(sentences):
   tensor_mask  = pad_sequence([item['attention_mask'].squeeze(0) for item in input_text], batch_first=True)
   tensor_ids = pad_sequence([item['token_type_ids'].squeeze(0) for item in input_text], batch_first=True) 
 
-  tensor_text, token_type, attention_mask = tensor_text.cuda(), tensor_ids.cuda(), tensor_mask.cuda()
+  tensor_text, token_type, attention_mask = tensor_text.to(device), tensor_ids.to(device), tensor_mask.to(device)
     
   with torch.no_grad():
     attentions = model(tensor_text, token_type_ids = token_type, attention_mask = attention_mask)[-1]
@@ -361,15 +361,9 @@ def main():
         elif method == 'transformer':
             print('\nTransformer Based Summarization')
             
-            # Check whether there is a GPU
-            cuda_flag = torch.cuda.is_available()
-            if cuda_flag:
-              device = torch.cuda.current_device()
-              device_name = torch.cuda.get_device_name(device)
-              
-              print(f'\nCurrent device: {device_name}\n')
-            else:
-              raise ValueError('GPU not found.')           
+            # Check the current device type
+            global device
+            device = 'cuda:0' if torch.cuda.is_available() else 'cpu'           
             
             # Initialize the tokenizer and model
             global tokenizer
